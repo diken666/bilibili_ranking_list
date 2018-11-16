@@ -3,12 +3,11 @@ const router =  express.Router();
 const https = require('https');
 
 router.get('/',(req,res,next)=>{
-    let url = "https://api.bilibili.com/x/web-interface/ranking?jsonp=jsonp&rid=0&day=3&type=2&arc_type=0";
+    let url = "https://www.bilibili.com/index/rank/all-3-177.json";
     httpsGet(url,(data)=>{
-        res.render('origin',{msg:data.data.list});
+        res.render('ranking',{msg:data.rank.list,hasClass:["","","","active",""]});
     });
 });
-
 
 function httpsGet(url,callback){
     https.get(url,(res)=>{

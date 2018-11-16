@@ -3,7 +3,8 @@ $(document).ready(function(){
         var li = $('.rank-menu li');
         li.each(function(){
             $(this).click(function(){
-                $(this).addClass("active").siblings().removeClass("active");
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
             })
         })
     })

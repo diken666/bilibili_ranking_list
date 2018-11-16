@@ -5,7 +5,7 @@
     <meta name="referrer" content="never">
     <title>热门视频排行榜</title>
     <link rel="stylesheet" href="./stylesheets/style.css">
-    <link rel="stylesheet" href="./stylesheets/ranking.css">
+    <link rel="stylesheet" href="./stylesheets/ranking_bangumi.css">
 </head>
 <body>
 <header class="header">
@@ -25,31 +25,31 @@
         <li><img class="loading" src="./images/loading.gif" alt="loading"></li>
     <% }else {%>
         <% msg.forEach((item,index)=>{%>
-            <li class="rank-item">
-                <div class="num"><%=index+1%></div>
-                <div class="content">
-                    <div class="img">
-                        <a href="<%='//www.bilibili.com/video/av'+item.aid%>"><img src="<%=item.pic+"@143w_88h.jpg"%>" alt="image"></a>
+        <li class="rank-item">
+            <div class="num"><%=index+1%></div>
+            <div class="content">
+                <div class="img">
+                    <a href="<%='//www.bilibili.com/video/av'+item.aid%>"><img src="http://i0.hdslb.com/bfs/bangumi/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png" alt="image"></a>
+                </div>
+                <div class="info">
+                    <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>
+                    <div class="detail">
+                        <div class="see">
+                            <i class="see-icon"></i>
+                            <span class="see-num"><%=item.video_review%></span>
+                        </div>
+                        <div class="author">
+                            <i class="a-icon"></i>
+                            <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name"><%=item.author%></a>
+                        </div>
                     </div>
-                    <div class="info">
-                        <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>
-                        <div class="detail">
-                            <div class="see">
-                                <i class="see-icon"></i>
-                                <span class="see-num"><%=item.video_review%></span>
-                            </div>
-                            <div class="author">
-                                <i class="a-icon"></i>
-                                <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name"><%=item.author%></a>
-                            </div>
-                        </div>
-                        <div class="pts">
-                            <span class="scores"><%=item.pts%></span>
-                            <p class="word">综合得分</p>
-                        </div>
+                    <div class="pts">
+                        <span class="scores"><%=item.pts%></span>
+                        <p class="word">综合得分</p>
                     </div>
                 </div>
-            </li>
+            </div>
+        </li>
         <%})%>
     <%}%>
 </ul>
