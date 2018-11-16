@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <title>热门视频排行榜</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/ranking.css">
+</head>
+<body>
+<header class="header">
+    <div class="h-top">
+        <div class="h-menu">这是头部导航栏</div>
+    </div>
+</header>
+<ul class="rank-menu">
+    <li class=""><a href="/ranking"><i class="rank-icon all"></i><span class="rank-text">全站榜</span></a></li
+    <li class=""><a href="/ranking_origin"><i class="rank-icon origin"></i><span class="rank-text">原创榜</span></a></li>
+    <li class=""><a href="/ranking_gangumi"><i class="rank-icon gangumi"></i><span class="rank-text">新番榜</span></a></li>
+    <li class=""><a href="/ranking_cinema"><i class="rank-icon cinema"></i><span class="rank-text">影视榜</span></a></li>
+    <li class=""><a href="/rangking/rookie"><i class="rank-icon rookie"></i><span class="rank-text">新人榜</span></a></li>
+</ul>
+<ul class="rank-list" id="rank-list">
+    <% if(msg.length===0){ %>
+        <li><img class="loading" src="./images/loading.gif" alt="loading"></li>
+    <% }else {%>
+        <% msg.forEach((item,index)=>{%>
+            <li class="rank-item">
+                <div class="num"><%=index+1%></div>
+                <div class="content">
+                    <div class="img">
+                        <a href="<%='//www.bilibili.com/video/av'+item.aid%>"><img src="<%=item.pic+"@143w_88h.jpg"%>" alt="image"></a>
+                    </div>
+                    <div class="info">
+                        <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>
+                        <div class="detail">
+                            <div class="see">
+                                <i class="see-icon"></i>
+                                <span class="see-num"><%=item.video_review%></span>
+                            </div>
+                            <div class="author">
+                                <i class="a-icon"></i>
+                                <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name"><%=item.author%></a>
+                            </div>
+                        </div>
+                        <div class="pts">
+                            <span class="scores"><%=item.pts%></span>
+                            <p class="word">综合得分</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        <%})%>
+    <%}%>
+</ul>
+
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/ranking.js"></script>
+</body>
+</html>
