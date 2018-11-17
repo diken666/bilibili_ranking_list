@@ -1,11 +1,11 @@
-const express = require('express');
-const router =  express.Router();
+const express  = require('express');
+const router = express.Router();
 const https = require('https');
 
 router.get('/',(req,res,next)=>{
-    let url = "https://bangumi.bilibili.com/api/season/rank/list?day=3&season_type=1";
+    let url = "https://api.bilibili.com/x/web-interface/archive/related?aid="+req.query.aid;
     httpsGet(url,(data)=>{
-        res.render('ranking_bangumi',{msg:data.result.list,hasClass:["","","active","",""]});
+        res.render('video_play',{aid:req.query.aid,title:req.query.title,info:data.data})
     });
 });
 
@@ -20,8 +20,5 @@ function httpsGet(url,callback){
         })
     });
 }
-
-
-
 
 module.exports = router;

@@ -29,18 +29,30 @@
             <div class="num"><%=index+1%></div>
             <div class="content">
                 <div class="img">
-                    <a href="<%='//www.bilibili.com/video/av'+item.aid%>"><img src="http://i0.hdslb.com/bfs/bangumi/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png" alt="image"></a>
+                    <a href="<%= "https://bangumi.bilibili.com/anime/"+item.season_id%>"><img src="<%= item.cover%>" alt="image"></a>
                 </div>
                 <div class="info">
-                    <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>
+                    <a class="title" href="<%= "https://bangumi.bilibili.com/anime/"+item.season_id%>"><%=item.title%></a>
                     <div class="detail">
+                        <% if(item.is_finish===0){%>
+                            <div class="bangumi-info">
+                                连载中，更新到第
+                                <span class="bangumi-num"><%= item.newest_ep_index%></span>
+                                话
+                            </div>
+                        <%}%>
+                         <% if(item.is_finish===1){%>
+                            <div class="bangumi-info">
+                                已完结，全<%= item.newest_ep_index%>话
+                            </div>
+                         <%}%>
                         <div class="see">
                             <i class="see-icon"></i>
-                            <span class="see-num"><%=item.video_review%></span>
+                            <span class="see-num"><%=item.dm_count%></span>
                         </div>
                         <div class="author">
                             <i class="a-icon"></i>
-                            <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name"><%=item.author%></a>
+                            <span><%=item.fav%></span>
                         </div>
                     </div>
                     <div class="pts">
@@ -53,7 +65,7 @@
         <%})%>
     <%}%>
 </ul>
-
+<iframe src="//player.bilibili.com/player.html?aid=36015655&cid=63224618&page=1"> </iframe>
 <script src="javascripts/jquery.js"></script>
 <script src="javascripts/ranking.js"></script>
 </body>

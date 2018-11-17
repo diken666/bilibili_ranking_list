@@ -29,7 +29,7 @@
                 <div class="num"><%=index+1%></div>
                 <div class="content">
                     <div class="img">
-                        <a href="<%='//www.bilibili.com/video/av'+item.aid%>"><img src="<%=item.pic+"@143w_88h.jpg"%>" alt="image"></a>
+                        <a href="<%=`/video_play?aid=${item.aid}&title=${item.title}`%>"><img src="<%=item.pic+"@143w_88h.jpg"%>" alt="image"></a>
                     </div>
                     <div class="info">
                         <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>

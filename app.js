@@ -11,6 +11,7 @@ var originRouter = require('./routes/ranking_origin');
 var rookieRouter = require('./routes/ranking_rookie');
 var cinemaRouter = require('./routes/ranking_cinema');
 var bangumiRouter = require('./routes/ranking_bangumi');
+var videoPlayRouter = require('./routes/video_play');
 
 
 var app = express();
@@ -33,6 +34,7 @@ app.use('/ranking_origin',originRouter);
 app.use('/ranking_rookie',rookieRouter);
 app.use('/ranking_cinema',cinemaRouter);
 app.use('/ranking_bangumi',bangumiRouter);
+app.use('/video_play',videoPlayRouter);
 
 
 // catch 404 and forward to error handler

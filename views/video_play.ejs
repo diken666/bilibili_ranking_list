@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="./stylesheets/video_play.css">
+</head>
+<body>
+<header class="header">
+    <div class="h-con">这是头部</div>
+</header>
+<div class="container">
+    <div class="l-con">
+        <div class="video">
+            <span class="board-top"></span>
+            <span class="board-bottom"></span>
+            <span class="board-right"></span>
+            <iframe id="iframe" src="//player.bilibili.com/player.html?aid=<%= aid%>"
+                    scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="r-con">
+        <span class="rec-title">相关视频推荐</span>
+        <div class="rec-list">
+            <div class="video-page-card">
+                <div class="pic-box"></div>
+                <div class="video-info">
+                    <div class="video-title">【老番茄】史上最骚大镖客（第二期）</div>
+                    <div class="up">老番茄</div>
+                    <div class="video-count">95.5万播放 · 4922弹幕</div>
+                </div>
+            </div>
+            <div class="video-page-card">
+                <div class="pic-box"></div>
+                <div class="video-info">
+                    <div class="video-title">【老番茄】史上最骚大镖客（第二期）</div>
+                    <div class="up">老番茄</div>
+                    <div class="video-count">95.5万播放 · 4922弹幕</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./javascripts/jquery.js"></script>
+<script src="./javascripts/video_play.js"></script>
+</body>
+</html>
