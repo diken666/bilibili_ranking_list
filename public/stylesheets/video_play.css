@@ -91,3 +91,74 @@ a{
     width: 320px;
     border: 1px solid #000;
 }
+.video-page-card{
+    display: block;
+    width: 320px;
+    height: 90px;
+    margin: 6px 0;
+}
+.rec-title{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    margin: 3px 0;
+    font-size: 18px;
+    color: #222;
+}
+.pic-box{
+    display: block;
+    position: relative;
+    float: left;
+    width: 140px;
+    height: 80px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+.pic-box img{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.video-info{
+    display: block;
+    position: relative;
+    float: right;
+    width: 170px;
+    height: 80px;
+    border: 1px solid #000;
+}
+.video-title{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 36px;
+    line-height: 18px;
+    font-size: 14px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+.video-title:hover{
+    color: #00a1d6;
+}
+.up{
+    display: block;
+    width: 100%;
+    height: 15px;
+    line-height: 15px;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+.video-count{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 15px;
+    line-height: 15px;
+    color: #999;
+    font-size: 12px;
+    overflow: hidden;
+}
