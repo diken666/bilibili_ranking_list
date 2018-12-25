@@ -21,29 +21,271 @@
             </iframe>
         </div>
     </div>
-
     <div class="r-con">
         <span class="rec-title">相关视频推荐</span>
         <div class="rec-list">
-            <div class="video-page-card">
-                <div class="pic-box">
-                    <a href="#">
-                        <img src="//i0.hdslb.com/bfs/archive/19cd897c61c584a07c4f6b089568d7bcce183704.jpg@336w_190h.jpg" alt="">
-                    </a>
+            <% related.forEach((item, index)=>{%>
+                <div class="video-page-card">
+                    <div class="pic-box">
+                        <a href="/video_play?aid=<%= item.stat.aid %>&title=<%= item.title %>">
+                            <img src="<%= item.pic%>@336w_190h.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="video-info">
+                        <a class="video-title" href="#"><%= item.title %></a>
+                        <a class="up" href="#"><%= item.owner.name %></a>
+                        <div class="video-count">
+                            <!--95.5万播放 · 4922弹幕-->
+                            <% if(item.stat.view / 10000 >=1) {%>
+                                <%= (item.stat.view/10000).toFixed(1)%>万播放 ·
+                            <%}%>
+                            <% if(item.stat.view / 10000 < 1) {%>
+                                <%= item.stat.view %>播放 ·
+                            <%}%>
+                            <% if(item.stat.danmaku / 10000 >= 1) {%>
+                                <%= (item.stat.danmaku / 10000).toFixed(1) %>万弹幕
+                            <%}%>
+                            <% if(item.stat.danmaku / 10000 < 1) {%>
+                                <%= item.stat.danmaku %>弹幕
+                            <%}%>
+                        </div>
+                    </div>
                 </div>
-                <div class="video-info">
-                    <a class="video-title" href="#">【老番茄】史上最骚大镖客（第二期）</a>
-                    <a class="up" href="#">老番茄</a>
-                    <div class="video-count">95.5万播放 · 4922弹幕</div>
+            <%})%>
+        </div>
+    </div>
+    <div class="view-box">
+        <div class="view-title-title"><%= title %></div>
+        <div class="view-data">
+            <span class="view">
+                <!--1万播放 · -->
+                <%if((typeof videoData.view) === 'number') {%>
+                    <%if(videoData.view/10000 >= 1){%>
+                        <%=(videoData.view/10000).toFixed(1)%>万播放 ·
+                    <%}%>
+                    <%if(videoData.view/10000 < 1){%>
+                        <%=videoData.view%>播放 ·
+                    <%}%>
+                <%}%>
+                <%if((typeof videoData.view) != 'number') {%>
+                    -- 播放 ·
+                <%}%>
+            </span>
+            <span class="dm">
+                <!--1万弹幕 ·-->
+                <%if((typeof videoData.danmaku) === 'number') {%>
+                    <%if(videoData.danmaku/10000 >= 1){%>
+                        <%=(videoData.danmaku/10000).toFixed(1)%>万弹幕 ·
+                    <%}%>
+                    <%if(videoData.danmaku/10000 < 1){%>
+                        <%=videoData.danmaku%>弹幕 ·
+                    <%}%>
+                <%}%>
+                <%if((typeof videoData.danmaku) != 'number') {%>
+                    -- 弹幕 ·
+                <%}%>
+            </span>
+            <span class="rank">
+                最高全站日排行第
+                <%if(typeof videoData.his_rank === 'number'){%>
+                    <%=videoData.his_rank%>
+                <%}%>
+                <%if(typeof videoData.his_rank != 'number'){%>
+                    --
+                <%}%>
+                名
+            </span>
+        </div>
+        <div class="video-ops">
+            <span class="like">
+                <!--点赞: 47.1万-->
+                <%if((typeof videoData.like) === 'number') {%>
+                    <%if(videoData.like/10000 >= 1){%>
+                        点赞：<%=(videoData.like/10000).toFixed(1)%>万
+                    <%}%>
+                    <%if(videoData.like/10000 < 1){%>
+                        点赞：<%=videoData.like%>
+                    <%}%>
+                <%}%>
+                <%if((typeof videoData.like) != 'number') {%>
+                    点赞：--
+                <%}%>
+            </span>
+            <span class="coin">
+                <!--硬币: 70.1万-->
+                <%if((typeof videoData.coin) === 'number') {%>
+                    <%if(videoData.coin/10000 >= 1){%>
+                        硬币：<%=(videoData.coin/10000).toFixed(1)%>万
+                    <%}%>
+                    <%if(videoData.coin/10000 < 1){%>
+                        硬币：<%=videoData.coin%>
+                    <%}%>
+                <%}%>
+                <%if((typeof videoData.coin) != 'number') {%>
+                    硬币：--
+                <%}%>
+            </span>
+            <span class="collect">
+                <!--收藏: 50.3万-->
+                <%if((typeof videoData.favorite) === 'number') {%>
+                    <%if(videoData.favorite/10000 >= 1){%>
+                        收藏：<%=(videoData.favorite/10000).toFixed(1)%>万
+                    <%}%>
+                    <%if(videoData.favorite/10000 < 1){%>
+                        收藏：<%=videoData.favorite%>
+                    <%}%>
+                <%}%>
+                <%if((typeof videoData.favorite) != 'number') {%>
+                    收藏：--
+                <%}%>
+            </span>
+        </div>
+        <div class="upper">
+            <span class="u-face">
+                <a href="#">
+                    <img src="//i1.hdslb.com/bfs/face/4d7fbb6c47b097e297b958c8dc74287cd880fc4a.jpg@52w_52h.jpg">
+                </a>
+            </span>
+            <div class="u-info">
+                <div class="u-name"><a href="#">小可儿</a></div>
+                <div class="u-desc">阿婆镇创始人，小可儿Studio主理</div>
+            </div>
+        </div>
+        <div class="v-desc"><%= desc %></div>
+        <ul class="v-tags">
+            <% tags.forEach((item,index)=>{ %>
+                <li><a href="#"><%= item.tag_name %></a></li>
+            <%})%>
+        </ul>
+    </div>
+</div>
+<div class="comment">
+    <div class="comment-left">
+        <div class="comment-head"><%=danmaku.page.acount%> 评论</div>
+        <div class="comment-bb">
+            <div class="comment-header">
+                <div class="tabs-order">全部评论</div>
+                <div class="header-page">
+                    <span class="result">共700页</span>
+                    <a href="#">上一页</a>
+                    <a href="#" class="c-active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <span class="dian">...</span>
+                    <a href="#">700</a>
+                    <a href="#">下一页</a>
                 </div>
             </div>
-            <div class="video-page-card">
-                <div class="pic-box"></div>
-                <div class="video-info">
-                    <a class="video-title" href="#">【老番茄】史上最骚大镖客（第二期）</a>
-                    <a class="up" href="#">老番茄</a>
-                    <div class="video-count">95.5万播放 · 4922弹幕</div>
+            <div class="comment-list">
+                <div class="item-list">
+                    <div class="user-face">
+                        <a href="#">
+                            <%if(danmaku.upper){%>
+                            <%}%>
+                            <img src="<%= danmaku.upper.top.member.avatar%>@48w_48h.jpg">
+                        </a>
+                    </div>
+                    <div class="con">
+                        <span class="name"><a href="#"><%= danmaku.upper.top.member.uname%></a></span>
+                        <p class="text"><%= danmaku.upper.top.content.message %></p>
+                        <div class="info">
+                            <span class="floor">#<%= danmaku.upper.top.floor %></span>
+                            <span class="time">
+                                <!--2018-12-11 17:55-->
+                                <% if(danmaku.upper.top.ctime){ %>
+                                    <% var int = parseInt((danmaku.upper.top.ctime.toString()+'000'),10) %>
+                                    <% var date = new Date(int) %>
+                                    <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
+                                    <%=date.getHours()%>:<%=date.getMinutes()%>
+                                <%}%>
+                            </span>
+                            <span class="like">点赞：<%=danmaku.upper.top.like%></span>
+                        </div>
+                        <div class="reply-box">
+                            <% danmaku.upper.top.replies.forEach(item=>{ %>
+                                <div class="reply-con">
+                                    <div class="user">
+                                        <a href="#">
+                                            <img src="<%=item.member.avatar%>@24w_24h.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="reply-info">
+                                        <span class="name"><a href="#"><%=item.member.uname%></a></span>
+                                        <p class="text"><%=item.content.message%></p>
+                                        <div class="info">
+                                            <span class="time">
+                                                <!--2018-12-11 17:55-->
+                                                <% if(item.ctime){ %>
+                                                    <% var int = parseInt((item.ctime.toString()+'000'),10) %>
+                                                    <% var date = new Date(int) %>
+                                                    <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
+                                                    <%=date.getHours()%>:<%=date.getMinutes()%>
+                                                <%}%>
+                                            </span>
+                                            <span class="like">点赞：<%=item.like%></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%})%>
+                        </div>
+                    </div>
                 </div>
+                <% danmaku.replies.forEach(item=>{ %>
+                    <div class="item-list">
+                        <div class="user-face">
+                            <a href="#">
+                                <img src="<%= item.member.avatar%>@48w_48h.jpg">
+                            </a>
+                        </div>
+                        <div class="con">
+                            <span class="name"><a href="#"><%= item.member.uname%></a></span>
+                            <p class="text"><%= item.content.message %></p>
+                            <div class="info">
+                                <span class="floor">#<%= item.floor %></span>
+                                <span class="time">
+                                <!--2018-12-11 17:55-->
+                                    <% if(item.ctime){ %>
+                                        <% var int = parseInt((item.ctime.toString()+'000'),10) %>
+                                        <% var date = new Date(int) %>
+                                        <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
+                                        <%=date.getHours()%>:<%=date.getMinutes()%>
+                                    <%}%>
+                                </span>
+                                <span class="like">点赞：<%=item.like%></span>
+                            </div>
+                            <div class="reply-box">
+                                <% if(item.replies){%>
+                                    <% item.replies.forEach(it=>{ %>
+                                    <div class="reply-con">
+                                        <div class="user">
+                                            <a href="#">
+                                                <img src="<%=it.member.avatar%>@24w_24h.jpg">
+                                            </a>
+                                        </div>
+                                        <div class="reply-info">
+                                            <span class="name"><a href="#"><%=it.member.uname%></a></span>
+                                            <p class="text"><%=it.content.message%></p>
+                                            <div class="info">
+                                            <span class="time">
+                                                <!--2018-12-11 17:55-->
+                                                <% if(it.ctime){ %>
+                                                    <% var int = parseInt((it.ctime.toString()+'000'),10) %>
+                                                    <% var date = new Date(int) %>
+                                                    <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
+                                                    <%=date.getHours()%>:<%=date.getMinutes()%>
+                                                <%}%>
+                                            </span>
+                                                <span class="like">点赞：<%=it.like%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%})%>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+                <%})%>
             </div>
         </div>
     </div>
