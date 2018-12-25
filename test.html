@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+<body>
+<button class="btn">btn</button>
+<textarea id="text" style="width: 400px; height: 100px;"></textarea>
+<script>
+    $('.btn').click(function(){
+        $.ajax({
+            url:"https://api.bilibili.com/x/v2/reply?pn=1&type=1&oid=19390801&sort=2",
+            type:"GET",
+            dataType:"jsonp",
+            success:function(data){
+                console.log(data);
+                var res = JSON.stringify(data);
+                $("#text").val(result);
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -7,8 +7,14 @@ router.get('/',(req,res,next)=>{
     let relatedUrl = "https://api.bilibili.com/x/web-interface/archive/related?aid="+req.query.aid;
     let upSayUrl = "https://api.bilibili.com/x/web-interface/archive/desc?aid="+req.query.aid;
     let tagsUrl = "https://api.bilibili.com/x/tag/archive/tags?aid="+req.query.aid;
-    let danmakuUrl = "https://api.bilibili.com/x/v2/reply?pn=1&type=1&oid="+req.query.aid+"&sort=2";
     let videoInfoUrl = "https://api.bilibili.com/x/web-interface/archive/stat?aid="+req.query.aid;
+    let danmakuUrl = "";
+    if(!req.query.page || req.query.page==='1'){
+        danmakuUrl = "https://api.bilibili.com/x/v2/reply?pn=1&type=1&oid="+req.query.aid+"&sort=2";
+    }
+    else{
+        danmakuUrl = "https://api.bilibili.com/x/v2/reply?pn="+req.query.page+"&type=1&oid="+req.query.aid+"&sort=2";
+    }
     httpsGet(relatedUrl,(relatedData)=>{
         httpsGet(upSayUrl,(upSaydata)=>{
             httpsGet(tagsUrl,(tagsData)=>{
@@ -17,6 +23,7 @@ router.get('/',(req,res,next)=>{
                         res.render('video_play',{
                             aid:req.query.aid,
                             title:req.query.title,
+                            pages: req.query.page || null,
                             related: relatedData.data,
                             desc: upSaydata.data,
                             tags: tagsData.data,

@@ -32,15 +32,21 @@
                         <a href="<%=`/video_play?aid=${item.aid}&title=${item.title}`%>"><img src="<%=item.pic+"@143w_88h.jpg"%>" alt="image"></a>
                     </div>
                     <div class="info">
-                        <a class="title" href="<%='//www.bilibili.com/video/av'+item.aid%>"><%=item.title%></a>
+                        <a class="title" href="<%=`/video_play?aid=${item.aid}&title=${item.title}`%>"><%=item.title%></a>
                         <div class="detail">
                             <div class="see">
-                                <i class="see-icon"></i>
-                                <span class="see-num"><%=item.video_review%></span>
+                                <span class="see-num">
+                                    点击数：
+                                    <%if(item.video_review/10000 >= 1){%>
+                                        <%=(item.video_review/10000).toFixed(1)%>万
+                                    <%}%>
+                                    <%if(item.video_review/10000 < 1){%>
+                                        <%=item.video_review%>
+                                    <%}%>
+                                </span>
                             </div>
                             <div class="author">
-                                <i class="a-icon"></i>
-                                <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name"><%=item.author%></a>
+                                <a href="<%='https://space.bilibili.com/'+item.mid+'/#/'%>" class="name">up主：<%=item.author%></a>
                             </div>
                         </div>
                         <div class="pts">

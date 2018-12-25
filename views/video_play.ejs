@@ -143,12 +143,37 @@
         <div class="upper">
             <span class="u-face">
                 <a href="#">
-                    <img src="//i1.hdslb.com/bfs/face/4d7fbb6c47b097e297b958c8dc74287cd880fc4a.jpg@52w_52h.jpg">
+                    <%if(danmaku.upper.top){%>
+                        <img src="<%=danmaku.upper.top.member.avatar%>@52w_52h.jpg">
+                    <%}%>
+                    <%if(!danmaku.upper.top){%>
+                        <img src="" alt="暂无图片">
+                    <%}%>
                 </a>
             </span>
             <div class="u-info">
-                <div class="u-name"><a href="#">小可儿</a></div>
-                <div class="u-desc">阿婆镇创始人，小可儿Studio主理</div>
+                <div class="u-name">
+                    <a href="#">
+                        <%if(danmaku.upper.top){%>
+                            <%if(danmaku.upper.top.member.uname){%>
+                                <%=danmaku.upper.top.member.uname%>
+                            <%}%>
+                        <%}%>
+                        <%if(!danmaku.upper.top){%>
+                            null
+                        <%}%>
+                    </a>
+                </div>
+                <div class="u-desc">
+                    <%if(danmaku.upper.top){%>
+                        <%if(danmaku.upper.top.member.sign){%>
+                            <%=danmaku.upper.top.member.sign%>
+                        <%}%>
+                    <%}%>
+                    <%if(!danmaku.upper.top){%>
+                        null
+                    <%}%>
+                </div>
             </div>
         </div>
         <div class="v-desc"><%= desc %></div>
@@ -165,45 +190,43 @@
         <div class="comment-bb">
             <div class="comment-header">
                 <div class="tabs-order">全部评论</div>
-                <div class="header-page">
-                    <span class="result">共700页</span>
-                    <a href="#">上一页</a>
-                    <a href="#" class="c-active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <span class="dian">...</span>
-                    <a href="#">700</a>
-                    <a href="#">下一页</a>
-                </div>
+                <%if(danmaku.page.acount && danmaku.page.count){%>
+                    <%var page = (danmaku.page.acount-danmaku.page.count)/20%>
+                    <div class="header-page">
+                        <span class="result">
+                            共<%=parseInt(page,10)%>页
+                        </span>
+                        <input type="number" value="1" maxlength="5" size="5" style="width: 45px;" class="pageNum">
+                        <a href="/video_play?aid=<%=aid%>&title=<%=title%>" id="go">GO</a>
+                    </div>
+                <%}%>
             </div>
             <div class="comment-list">
-                <div class="item-list">
-                    <div class="user-face">
-                        <a href="#">
-                            <%if(danmaku.upper){%>
-                            <%}%>
-                            <img src="<%= danmaku.upper.top.member.avatar%>@48w_48h.jpg">
-                        </a>
-                    </div>
-                    <div class="con">
-                        <span class="name"><a href="#"><%= danmaku.upper.top.member.uname%></a></span>
-                        <p class="text"><%= danmaku.upper.top.content.message %></p>
-                        <div class="info">
-                            <span class="floor">#<%= danmaku.upper.top.floor %></span>
-                            <span class="time">
-                                <!--2018-12-11 17:55-->
-                                <% if(danmaku.upper.top.ctime){ %>
-                                    <% var int = parseInt((danmaku.upper.top.ctime.toString()+'000'),10) %>
-                                    <% var date = new Date(int) %>
-                                    <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
-                                    <%=date.getHours()%>:<%=date.getMinutes()%>
-                                <%}%>
-                            </span>
-                            <span class="like">点赞：<%=danmaku.upper.top.like%></span>
+                <%if(danmaku.upper.top && (pages === '1' || pages === null)){%>
+                    <div class="item-list">
+                        <div class="user-face">
+                            <a href="#">
+                                <img src="<%= danmaku.upper.top.member.avatar%>@48w_48h.jpg">
+                            </a>
                         </div>
-                        <div class="reply-box">
-                            <% danmaku.upper.top.replies.forEach(item=>{ %>
+                        <div class="con">
+                            <span class="name"><a href="#"><%= danmaku.upper.top.member.uname%></a></span>
+                            <p class="text"><%= danmaku.upper.top.content.message %></p>
+                            <div class="info">
+                                <span class="floor">#<%= danmaku.upper.top.floor %></span>
+                                <span class="time">
+                                <!--2018-12-11 17:55-->
+                                    <% if(danmaku.upper.top.ctime){ %>
+                                        <% var int = parseInt((danmaku.upper.top.ctime.toString()+'000'),10) %>
+                                        <% var date = new Date(int) %>
+                                        <%=date.getFullYear()%>-<%=date.getMonth()+1%>-<%=date.getDate()%>
+                                        <%=date.getHours()%>:<%=date.getMinutes()%>
+                                    <%}%>
+                                </span>
+                                <span class="like">点赞：<%=danmaku.upper.top.like%></span>
+                            </div>
+                            <div class="reply-box">
+                                <% danmaku.upper.top.replies.forEach(item=>{ %>
                                 <div class="reply-con">
                                     <div class="user">
                                         <a href="#">
@@ -227,10 +250,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            <%})%>
+                                <%})%>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <%}%>
                 <% danmaku.replies.forEach(item=>{ %>
                     <div class="item-list">
                         <div class="user-face">
